@@ -2,6 +2,69 @@
 <html>
     <head>
         <title>AI Document Chatbot</title>
+        <style>
+    body {
+        background-color: #1e1e2e;
+        color: #cdd6f4;
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    h1 {
+        color: #cba6f7;
+        margin-bottom: 30px;
+    }
+
+    h2 {
+        color: #cba6f7;
+    }
+
+    textarea {
+        width: 100%;
+        background-color: #313244;
+        color: #cdd6f4;
+        border: 1px solid #45475a;
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        background-color: #313244;
+        color: #cdd6f4;
+        border: 1px solid #45475a;
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    button {
+        background-color: #cba6f7;
+        color: #1e1e2e;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #b4befe;
+    }
+
+    .answer-box {
+        background-color: #313244;
+        border: 1px solid #45475a;
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+</style>
     </head>
     <body>
         <h1>AI Document Chatbot</h1>
@@ -13,6 +76,8 @@
         <button type="submit">ASK</button>       
         </form>
         <h2>Answer:</h2>
-        <p>{{ answer }}</p>
+        <div class="answer-box">
+            <p>{{ answer | safe }}</p>
+        </div>
     </body>
 </html>

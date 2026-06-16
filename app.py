@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import anthropic
 import os
 from dotenv import load_dotenv
+import markdown
 
 load_dotenv()
 app = Flask(__name__)
@@ -15,6 +16,8 @@ def home():
 def ask():
     document = request.form.get("document")
     question = request.form.get("question")
+    if not document or not question:
+        return render_template("index.html", answer = "Please provide both a document and a question.")
 
     message = client.messages.create(
         model = "claude-sonnet-4-6",
@@ -23,7 +26,8 @@ def ask():
             {"role":"user", "content":f"Document: {document}\n\nQuestion: {question}"}
         ]
     )
-    return render_template("index.html", answer=message.content[0].text)
+    answer = markdown.markdown(message.content[0].text)
+    return render_template("index.html", answer=answer)
 
 if __name__ == "__main__":
     app.run(debug=True)
